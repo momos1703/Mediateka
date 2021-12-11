@@ -14,6 +14,7 @@ start();
 let personalMovieDB = {
     count: numberOfFilms,
     movies: {},
+
     actors: {},
     genres: [],
     privat: false
@@ -99,3 +100,6 @@ function writeYourGenres(genres) {
 }
 
 writeYourGenres(personalMovieDB.genres);
+
+
+// some text for checking
