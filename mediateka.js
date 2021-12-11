@@ -102,4 +102,4 @@ function writeYourGenres(genres) {
 writeYourGenres(personalMovieDB.genres);
 
 
-//point for checking 2
+//point for checking 3
