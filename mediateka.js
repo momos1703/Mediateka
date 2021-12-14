@@ -22,35 +22,83 @@ let personalMovieDB = {
             while (this.count == '' || this.count == null || isNaN(this.count)) {
                 this.count = +prompt ("Скільки фільмів Ви вже переглянули?", "Введіть число");
             }
-        },
+},
     rememberMyFilms: function rememberMyFilms() {
-        for (let i = 0; i < this.count; i++) {
-    
-            let lastMovie = prompt ("Який фільм Ви переглядали останнім,", "Введіть назву фільму");
-                if (lastMovie !== null && lastMovie !== "Введіть назву фільму" && lastMovie !== '' &&
-                 lastMovie.length <= 50){
-                        let movieMark = prompt ("Як ви оціните цей фільм по 10-бальній системі?", "Поставте оцінку");
-                        if (movieMark !== null && movieMark !== '' && movieMark !== "Поставте оцінку" && 
-                        !isNaN(movieMark)){
-                            this.movies[lastMovie] = +movieMark;
+                            for (let i = 0; i < this.count; i++) {
+                        
+                                let lastMovie = prompt ("Який фільм Ви переглядали останнім,", "Введіть назву фільму");
+                                let movieMark = prompt ("Як ви оціните цей фільм по 10-бальній системі?", 
+                                "Поставте оцінку");
+                                    if (lastMovie !== null && lastMovie !== "Введіть назву фільму" &&
+                                    lastMovie !== '' && lastMovie.length <= 50 && movieMark !== null && 
+                                    movieMark !== '' && movieMark !== 
+                                    "Поставте оцінку" && 
+                                    !isNaN(movieMark)){
+                                        this.movies[lastMovie] = +movieMark;
+                                    } else {
+                                        alert ("Введені дані не коректні або в них більше 50-ти символів");
+                                        i--;
+                                    }
+                            }
+},
+    rememberMyFilmsAlt: function rememberMyFilmsAlt() {
+                            let i = 0;
+                            while (i < 2) {
+                                let lastMovie = prompt ("Який фільм Ви переглядали останнім,", "");
+                                let movieMark = prompt ("Як ви оціните цей фільм по 10-бальній системі?", "");
+                                if (lastMovie !== null && lastMovie !== "Введіть назву фільму" &&
+                                lastMovie !== '' && lastMovie.length <= 50 && movieMark !== null && 
+                                movieMark !== '' && movieMark !== "Поставте оцінку" && !isNaN(movieMark)){
+                                    this.movies[lastMovie] = +movieMark;
+                                } else {
+                                    alert ("Введені дані не коректні або в них більше 50-ти символів");
+                                    i--;
+                                }
+                            i++;
+                            }
+},
+    detectPersonalLevel: function detectPersonalLevel() {
+                        if (this.count >= 20) {
+                            alert ("Оооо, та Ви справжній кіноман)");
+                        } else if (this.count >= 10 && this.count < 20){
+                            alert ("Ви класичний глядач.");
+                        } else if  (this.count < 10 && this.count > 0){
+                            alert ("Ви переглянули замало фільмів.");    
+                        } else if  (this.count == 0 ||  this.count == null){
+                            alert ("Введіть число");  
                         } else {
-                            alert ("Поставте свою оцінку");
+                            alert ("Сталася помилка, будь ласка, введіть дані повторно.");
+                        }
+},
+    showMyDB: function showMyDB(hidden) {
+            if (!hidden){
+                console.log (this);
+            }
+},
+    writeYourGenres: function writeYourGenres() {
+                    alert("Назвіть 3 Ваших найулюбленіших жанри кіно");
+                    for (let i = 1; i <= 3; i++){
+                        let answers = prompt(`Який Ваш улюблений жанр під номером ${i}?`);
+                        if (answers !== '' && answers !== null){
+                            this.genres[i - 1] = answers;
+                            //genres[i - 1] = prompt(`Який Ваш улюблений жанр під номером ${i}?`); 
+                            //- допустимий такий варіант спрощення, без змінної answers
+                        } else {
                             i--;
                         }
-                } else {
-                    alert ("Введені дані не коректні або в них більше 50-ти символів");
-                    i--;
-                }
-        }
-    }  
+                    }
+}
 };
 
-personalMovieDB.start();
-personalMovieDB.rememberMyFilms();
+// personalMovieDB.start();
+// //personalMovieDB.rememberMyFilms();
+// personalMovieDB.rememberMyFilmsAlt();
+// personalMovieDB.detectPersonalLevel();
+// personalMovieDB.showMyDB(personalMovieDB.privat);
+personalMovieDB.writeYourGenres();
+
 
 console.log(personalMovieDB);
-
-
 
 // function rememberMyFilms() {
 //     for (let i = 0; i < numberOfFilms; i++) {
